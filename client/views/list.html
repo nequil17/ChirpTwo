@@ -1,0 +1,12 @@
+<h2 id="colorpick">A list of your chirps!</h2>
+
+<div ng-controller="listController">
+    <div id="listcss" ng-repeat="post in postList">
+        <div ng-click='deleteData(post.id)'>
+        <p id="upper">User: {{ post.user }} </p>
+        <p>Chirped: {{ post.message }} </p>
+        </br>
+        </div>
+    <button ng-click="getId(post.id)" type=submit>Click Here!</button>
+    </div> 
+</div>

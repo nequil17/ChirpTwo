@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="mainApp">
+  <head>
+    <link rel="stylesheet" href="app/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.js"></script>
+  </head>
+  <body id="img">
+    <div ng-view></div>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#/">Home</a>
+    <a href="#/add">Add</a>
+    <a href="#/list">List</a>
+  </div>
+
+  <div id="main">
+    <span style="font-size:30px;cursor:pointer;color:orange" onclick="openNav()">&#9776; open</span>
+  </div>
+
+  <ul>
+    <li><a class="active" href="#/">Home</a></li>
+    <li><a href="#/add">Add Chirps</a></li>
+    <li><a href="#/list">List of Chirps</a></li>
+  </ul>
+    <script src="app/app.js"></script>
+  </body>
+</html>

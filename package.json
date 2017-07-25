@@ -1,0 +1,12 @@
+{
+  "name": "angular-chiper",
+  "version": "0.0.1",
+  "main": "server/index.js",
+  "dependencies": {
+    "@types/express": "latest",
+    "@types/shortid": "0.0.29",
+    "body-parser": "latest",
+    "express": "latest",
+    "shortid": "^2.2.8"
+  }
+}
