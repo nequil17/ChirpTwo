@@ -13,10 +13,18 @@ mainApp.config(function($routeProvider) {
         templateUrl : '../views/add.html',
         controller : 'addController'
     })
-    .when("/single/:id", {
+    .when("/single/one/:id", {
         templateUrl : '../views/single.html',
         controller : 'singleController'
-    });
+    })
+    .when("/user", {
+        templateUrl : '../views/user.html',
+        controller : 'userController'
+    })
+    .when("/chirp/:user", {
+        templateUrl : '../views/chirp.html',
+        controller : 'chirpController'
+    })
 });
 
     angular.module('controllers', [])
@@ -27,6 +35,8 @@ mainApp.config(function($routeProvider) {
     .controller('singleController', ['$scope', function() {  
     }])
     .controller('userController', ['$scope', function() {
+    }])
+    .controller('chirpController', ['scope', function() {
     }]);
 
     mainApp.controller('addController', function($scope, $http, $location) {
@@ -45,11 +55,13 @@ mainApp.config(function($routeProvider) {
         .then(function(response) { 
             $scope.postList = response.data;
         });
+
         $scope.getId=function(id) {
-            $location.path('/single/' + id);
+            $location.path('/single/one/' + id);
         }
+
         $scope.deleteData = function(id) {
-         $http.delete("/api/chirps/" + id)
+         $http.delete("/api/chirps/one/" + id)
             .success(function(response) {
                $http.get('/api/chirps')
                 .then(function (response) {
@@ -61,17 +73,17 @@ mainApp.config(function($routeProvider) {
 
     mainApp.controller('singleController', function($scope, $routeParams, $http, $location) {   
         var currentId = $routeParams.id;
-        $http.get('http://localhost:3000/api/chirps/' + currentId)
+        $http.get('http://localhost:3000/api/chirps/one/' + currentId)
         .then(function(response) {
             $scope.postList = response.data;
         });
     
     
     $scope.deleteData = function(id) {
-       $http.delete("/api/chirps/" + id)
+       $http.delete("/api/chirps/one/" + id)
            .success(function(response) {
                $http.get('/api/chirps')
-               .then(function (response) {
+               .then(function(response) {
                 $scope.postList = response.data;
                 $location.path('/list/');
                 });
@@ -82,10 +94,33 @@ mainApp.config(function($routeProvider) {
     mainApp.controller('userController', function($scope, $http, $location) {
         $http.get('/api/users')
         .then(function(response) {
+            console.log(response.data);
             $scope.postList = response.data;
-            console.log(response);
         });
-        
+        $scope.getId = function(id) {
+            $location.path('/chirp/' + id);
+        }
+        // $scope.deleteData = function(id) {
+        //  $http.delete("/api/chirps/one/" + id)
+        //     .success(function(response) {
+        //        $http.get('/api/chirps')
+        //         .then(function (response) {
+        //             $scope.postList = response.data;
+        //         });
+        //     });    
+        // }
+    });
+
+    mainApp.controller('chirpController', function($scope, $http, $routeParams) {
+        var currentUser = $routeParams.user;
+        $http.get('/api/chirps/user/' + currentUser)
+        .then(function(response) {
+            console.log(response.data);
+            $scope.postList = response.data;
+        });
+        $scope.getId = function(element) {
+            window.location = '#/chirp/' + element.value;
+        }
     });
 
 // side bar stuff
@@ -98,3 +133,4 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
+

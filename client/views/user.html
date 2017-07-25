@@ -1,3 +1,5 @@
 <div ng-controller='userController'>
-    
+    <div id="listcss" ng-repeat="post in postList">
+    <p ng-click="getId(post)">User: {{ post }} </p>   
+    </div>
 </div>
