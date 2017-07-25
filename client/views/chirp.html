@@ -1,6 +1,8 @@
 <div ng-controller='chirpController'>
     <div id="listcss" ng-repeat="post in postList">
     <p>Chirped: {{ post.message }} </p>
+    <button ng-click="deleteData(post.id)" type=submit>Click Here!</button>
     </div>
+    
 </div>   
 

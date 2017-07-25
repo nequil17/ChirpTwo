@@ -94,32 +94,33 @@ mainApp.config(function($routeProvider) {
     mainApp.controller('userController', function($scope, $http, $location) {
         $http.get('/api/users')
         .then(function(response) {
-            console.log(response.data);
             $scope.postList = response.data;
         });
         $scope.getId = function(id) {
             $location.path('/chirp/' + id);
         }
-        // $scope.deleteData = function(id) {
-        //  $http.delete("/api/chirps/one/" + id)
-        //     .success(function(response) {
-        //        $http.get('/api/chirps')
-        //         .then(function (response) {
-        //             $scope.postList = response.data;
-        //         });
-        //     });    
-        // }
+        
     });
 
-    mainApp.controller('chirpController', function($scope, $http, $routeParams) {
+    mainApp.controller('chirpController', function($scope, $http, $routeParams, $location) {
         var currentUser = $routeParams.user;
         $http.get('/api/chirps/user/' + currentUser)
         .then(function(response) {
-            console.log(response.data);
             $scope.postList = response.data;
         });
         $scope.getId = function(element) {
             window.location = '#/chirp/' + element.value;
+        }
+        $scope.deleteData = function(id) {
+         $http.delete("/api/chirps/one/" + id)
+            .success(function(response) {
+               $http.get('/api/chirps')
+                .then(function(response) {
+                    console.log(response.data)
+                $location.path('/user/');
+
+                });
+            });    
         }
     });
 
