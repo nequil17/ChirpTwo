@@ -17,10 +17,16 @@
 ## API Docs
 
 GET
+- /api/chirps (get all chirps)
+- /api/chirps/one/:id (get one chirp)
 - /api/users (get all users)
 - /api/chirps/user/:user (get all chirps from one user)
 
+POST
+- /api/chirps (insert one chirp)
+
 DELETE
+- /api/chirps/:id (delete one chirp)
 - /api/chirps/user/:user (delete all chirps from one user)
 
 
