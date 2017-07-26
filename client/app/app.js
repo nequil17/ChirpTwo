@@ -116,11 +116,19 @@ mainApp.config(function($routeProvider) {
             .success(function(response) {
                $http.get('/api/chirps')
                 .then(function(response) {
-                    console.log(response.data)
                 $location.path('/user/');
 
                 });
             });    
+        }
+        $scope.deleteEverything = function() {
+            $http.delete('/api/chirps/user/' + $routeParams.user)
+            .success(function(response) {
+                $http.get('/api/chirps/')
+                .then(function(response) {
+                    $location.path('/user/');
+                })
+            })
         }
     });
 

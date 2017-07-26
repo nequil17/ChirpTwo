@@ -1,8 +1,8 @@
 <div ng-controller='chirpController'>
     <div id="listcss" ng-repeat="post in postList">
     <p>Chirped: {{ post.message }} </p>
-    <button ng-click="deleteData(post.id)" type=submit>Click Here!</button>
+    <button ng-click="deleteData(post.id)" type=submit>Delete Chirp</button>
     </div>
-    
+    <button ng-click="deleteEverything(post.id)" type=submit>Delete All Chirps</button>
 </div>   
 
